@@ -1,0 +1,170 @@
+---
+title: "Dictionary Web App"
+date: "2023-05-15"
+liveURL: "https://mightycoyote.github.io/dictionary-web-app/"
+challengeURL: "https://www.frontendmentor.io/challenges/dictionary-web-app-h5wwnyuKFL"
+abstract: This Free Dictionary lookup app built with React, Sass, fluid typography, and darkmode is one of my more elaborate FrontendMentor.io projects.
+builtWith: "Mobile-first workflow, semantic HTML, Flexbox, SCSS, fluid typography, React, API, localStorage, CoreUI, new-component utility"
+featured: true
+image:
+  src: "../images/dictionary.jpg"
+  alt: "Screen grab of dictionary lookup app"
+---
+## Intro
+
+This is the first project I did after completing the first three modules or so of Josh Comeau's [The Joy of React](https://www.joyofreact.com/) course, and there's a huge difference in my understanding between this and my first React project, [INFyO](../infyo/). Which is good, because there's a lot going on here. It uses the [Free Dictionary API](https://dictionaryapi.dev/), has font and darkmode selectors, and plays pronunciation audio when it's available. Darkmode checks for a local preference; both darkmode and font are saved to local storage so that they stay the way the user likes them on the next visit. Finally, it includes error states for when the user tries to submit an empty form or no results are found.
+
+## CSS and CoreUI
+
+I began this build with CSS Modules, and also decided to use a UI library, especially for the "switch" element for darkmode. (The ubiquitous switch UI is not a native element on the web, usually a checkbox heavily modified by CSS.) CoreUI did not play well with CSS Modules, so I had to remove the latter and go back to using one big stylesheet for the app instead of compartmentalizing the CSS with the React components as I'd intended. (CoreUI _does_ use Sass, however, so my stylesheet is in Sass.)
+
+Overall, using CoreUI had its advantages and disadvantages. I could have gotten a CSS switch from one of the many freely available on the internet and not installed a UI library at all. So on one hand, since the design wasn't built with any out-of-the-box UI library in mind, I still had to do a lot of customization of the CoreUI components. On the other, in some cases it was easier to do that than start from scratch. For example, CoreUI had already done the work to remove the native arrow on a dropdown box and replace it with a prettier one. In my stylesheet, I just replaced their replacement and changed spacing, colors, cursor and so on to match the FrontendMentor comp.
+
+```SCSS
+#fontselect {
+  font-family: inherit;
+  font-size: $c14-to-18;
+  font-weight: 700;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+  /* replaces CoreUI's custom caret with the one for this design */
+  background-image: url(./assets/images/icon-arrow-down.svg);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 46px;
+  cursor: pointer;
+
+  &:focus {
+    border: 1px solid $purple;
+    box-shadow: none;
+    outline: none;
+  }
+}
+```
+
+## JS (React)
+
+One of the trickier parts of this app was sorting out the data that came back from the API. Not only can some words have a _lot_ of meanings, these were nested a few levels down and across arrays of objects in a way that often felt arbitrary. At any rate, the code has to extract and squish them together so that they can eventually end up on the page.
+
+```jsx
+function Result({ result, handleSubmit, setSearch }) {
+  // ...etc
+
+  const allEntries = result.map((entry) => entry.meanings);
+
+  return (
+    // ...etc
+
+    {allEntries.map((entry) => (
+      <EntrySection
+        entry={entry}
+        handleSubmit={handleSubmit}
+        setSearch={setSearch}
+        key={crypto.randomUUID()}
+      />
+    ))}
+  )
+}
+```
+
+After that, the actual definitions/meanings are grouped by part of speech, and each one can optionally include usage examples, synonyms, and antonyms. Also, based on the design, I decided a user could reasonably expect clicking on a synonym or antonym to repeat the search with that word.
+
+```jsx
+function EntrySection({ entry, handleSubmit, setSearch }) {
+  return (
+    <React.Fragment>
+      {entry.map((part) => (
+        <div className="entrysection" key={crypto.randomUUID()}>
+          <h2><span>{part.partOfSpeech}</span></h2>
+          <div>
+            <h3 className="meaningh3">Meaning</h3>
+            <ul>
+              {part.definitions?.map((definition) => (
+                <React.Fragment key={crypto.randomUUID()}>
+                  <li>{definition.definition}</li>
+                  {definition.example && (
+                    <li className="example">
+                      "{definition.example}"
+                    </li>
+                  )}
+                </React.Fragment>
+              ))}
+            </ul>
+          </div>
+
+          {part.synonyms.length > 0 && (
+            <div className="synonymssection" >
+              <h3>Synonyms</h3>
+              <div>
+                {part.synonyms?.map((synonym) => (
+                  <span
+                    key={crypto.randomUUID()}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setSearch(synonym);
+                      handleSubmit(synonym);
+                    }}
+                  >
+                    {synonym}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          // antonyms are handled here similarly to the synonyms
+
+        </div>
+      ))}
+    </React.Fragment>
+  );
+}
+```
+
+The audio pronunciation feature was another interesting problem. For any given word, there can be multiple recordings, or none, and they can appear anywhere in the array. This `PlayWord` component looks for the first one, and adds it to state if one is found. If there isn't one, the Play button isn't rendered.
+
+```jsx
+function PlayWord({ wordInfo }) {
+  // URL or null
+  const [audioFile, setAudioFile] = React.useState(null);
+  const audioRef = React.useRef();
+
+  // find a phonetics entry that includes audio
+  React.useEffect(() => {
+    const audioSifted = wordInfo.phonetics.find((audio) => audio.audio !== "");
+    setAudioFile(audioSifted !== null ? audioSifted?.audio : null);
+  }, [wordInfo.phonetics]);
+
+  return (
+    <>
+      {audioFile && (
+        <>
+          <audio src={audioFile} ref={audioRef} />
+          <button
+            className="playbutton"
+            onClick={() => audioRef.current.play()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 75 75"
+              role="img"
+            >
+              <title>Play pronuncation (when available)</title>
+              <g className="playsvg" fill="#A445ED" fillRule="evenodd">
+                <circle
+                  cx="37.5"
+                  cy="37.5"
+                  r="37.5"
+                  opacity=".25"
+                />
+                <path d="M29 27v21l21-10.5z" />
+              </g>
+            </svg>
+          </button>
+        </>
+      )}
+    </>
+  );
+}
+```

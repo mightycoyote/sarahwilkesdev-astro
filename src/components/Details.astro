@@ -1,0 +1,19 @@
+---
+const { summary, children } = Astro.props;
+---
+
+<!-- this component uses and styles the standard <details> html element, is used on about page -->
+<style>
+  details {
+    margin: 1rem 0;
+    color: var(--primary-1);
+    summary {
+      color: var(--primary-2);
+    }
+  }
+</style>
+
+<details>
+  <summary>{summary}</summary>
+  {children}
+</details>

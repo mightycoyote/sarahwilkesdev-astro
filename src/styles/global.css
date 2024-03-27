@@ -22,7 +22,7 @@ html {
   --green-text: var(--secondary-2-2);
   --blue-text: var(--secondary-1-2);
   --teal-text: var(--primary-0);
-  --text-font: "Montserrat", sans-serif;
+  --text-font: "Montserrat Variable", sans-serif;
   --display-font: "Calistoga", system-ui;
   --bg-dark: #0a0a0a;
   --text-light: #ececec;
@@ -98,20 +98,19 @@ html {
   }
 }
 
-  /* for arrow icon */
-  .material-symbols-outlined {
-    font-family: "Material Symbols Outlined";
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px; 
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    font-feature-settings: "liga";
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  }
+/* for arrow icon */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* I've adjusted the weight here to better match old site */
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}

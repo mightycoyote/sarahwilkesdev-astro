@@ -1,8 +1,68 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import octocat from "../images/Sarah_octocat.webp";
+import Contact from "../components/Contact.astro";
 const pageTitle = "Home | Sarah Wilkes Dev";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: clamp(2rem, 8vw, 8rem) 0;
+    gap: 2rem;
 
+    .name {
+      margin-top: clamp(1rem, 4vw, 2rem);
+      margin-bottom: 1rem;
+      font-family: var(--display-font);
+      font-weight: 400;
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: var(--blue-text);
+    }
+
+    .spaced-header {
+      color: var(--secondary-1-1);
+    }
+
+    .img-wrapper {
+      max-width: clamp(10rem, 22vw, 20rem);
+    }
+
+    @media (min-width: 40rem) {
+      flex-direction: row;
+      gap: clamp(32px, 8vw, 100px);
+    }
+  }
+</style>
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="hero">
+    <div>
+      <h1 class="spaced-header">About me</h1>
+      <p class="name">Sarah Wilkes</p>
+      <p>
+        Hi! I'm a frontend web developer and content strategy enthusiast. I
+        enjoy figuring out new systems, problem-solving, JavaScript, and yes,
+        even CSS.
+      </p>
+      <p class="more">
+        <a href="/about">
+          More 
+          <span class="material-symbols-outlined">arrow_outward</span>
+        </a>
+      </p>
+    </div>
+    <div class="img-wrapper">
+      <!-- <Image
+        src={octocat}
+        alt="Github Octocat avatar, wearing t-shirt, jeans, glasses, and holding a baguette"
+        loading="eager"
+      /> -->
+    </div>
+  </div>
+  <!-- <Featured /> -->
+  <Contact />
 </BaseLayout>

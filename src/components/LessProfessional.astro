@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import cat from "../images/marshmallow-cat.png";
+import cat from "../images/marshmallow-cat-web.png";
 ---
 
 <style>
@@ -25,6 +25,6 @@ import cat from "../images/marshmallow-cat.png";
 <div class="lp">
   <div><slot /></div>
   <div>
-    <!-- <Image src={cat} alt="a white cat lounging, almost asleep" /> -->
+    <Image src={cat} alt="a white cat lounging, almost asleep" />
   </div>
 </div>

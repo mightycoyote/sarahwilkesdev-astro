@@ -33,6 +33,10 @@ html {
   color: var(--text-light);
   overflow: auto;
 
+  img {
+    height: 100%;
+  }
+
   h1 {
     color: var(--blue-text);
     font-family: var(--display-font);

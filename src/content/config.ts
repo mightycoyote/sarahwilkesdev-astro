@@ -4,7 +4,7 @@ const workCollection = defineCollection({
     type: 'content',
     schema: z.object({
       title: z.string(),
-      date: z.date(),
+      date: z.string(),
       liveURL: z.string().url(),
       challengeURL: z.string().url().optional(),
       abstract: z.string(),

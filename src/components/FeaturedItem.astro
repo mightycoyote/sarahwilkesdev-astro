@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+const { index, title, abstract, image } = Astro.props;
+---
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: rgba(15, 31, 88, 0.3);
+    border-radius: 3px;
+
+    p {
+      color: var(--text-light);
+    }
+    .more {
+      color: var(--green-text);
+    }
+    &:hover {
+      outline: var(--green-text) 2px solid;
+      scale: 1.01;
+      .more {
+        color: var(--teal-text);
+      }
+    }
+
+    @media (min-width: 45rem) {
+      flex-direction: row;
+
+      .info {
+        flex-grow: 2;
+      }
+      .image {
+        flex-basis: 30%;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .reversed {
+    @media (min-width: 45rem) {
+      flex-direction: row-reverse;
+    }
+  }
+</style>
+
+<div>
+  {
+    index % 2 === 0 ? (
+      <a href="">
+        <div class="card">
+          <div class="info">
+            <h3>{title}</h3>
+            <p>{abstract}</p>
+            <p class="more">
+              More{" "}
+              <span class="material-symbols-outlined"> arrow_outward </span>
+            </p>
+          </div>
+          <div class="image">
+          
+          </div>
+        </div>
+      </a>
+    ) : (
+      <a href="">
+        <div class="card reversed">
+          <div class="info">
+            <h3>{title}</h3>
+            <p>{abstract}</p>
+            <p class="more">
+              More{" "}
+              <span class="material-symbols-outlined"> arrow_outward </span>
+            </p>
+          </div>
+          <div class="image">
+            
+          </div>
+        </div>
+      </a>
+    )
+  }
+</div>
+
+<!-- <Image src={image.src} alt={image.alt} /> -->

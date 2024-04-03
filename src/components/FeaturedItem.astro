@@ -61,7 +61,7 @@ const { index, title, abstract, image } = Astro.props;
             </p>
           </div>
           <div class="image">
-          
+            <Image src={image.src} alt={image.alt} />
           </div>
         </div>
       </a>
@@ -77,12 +77,10 @@ const { index, title, abstract, image } = Astro.props;
             </p>
           </div>
           <div class="image">
-            
+            <Image src={image.src} alt={image.alt} />
           </div>
         </div>
       </a>
     )
   }
 </div>
-
-<!-- <Image src={image.src} alt={image.alt} /> -->

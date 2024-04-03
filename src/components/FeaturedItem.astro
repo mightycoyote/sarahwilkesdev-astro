@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-const { index, title, abstract, image } = Astro.props;
+const { index, data, slug } = Astro.props;
 ---
 
 <style>
@@ -50,34 +50,34 @@ const { index, title, abstract, image } = Astro.props;
 <div>
   {
     index % 2 === 0 ? (
-      <a href="">
+      <a href={`/work/${slug}`}>
         <div class="card">
           <div class="info">
-            <h3>{title}</h3>
-            <p>{abstract}</p>
+            <h3>{data.title}</h3>
+            <p>{data.abstract}</p>
             <p class="more">
               More{" "}
               <span class="material-symbols-outlined"> arrow_outward </span>
             </p>
           </div>
           <div class="image">
-            <Image src={image.src} alt={image.alt} />
+            <Image src={data.image.src} alt={data.image.alt} />
           </div>
         </div>
       </a>
     ) : (
-      <a href="">
+    <a href={`/work/${slug}`}>
         <div class="card reversed">
           <div class="info">
-            <h3>{title}</h3>
-            <p>{abstract}</p>
+            <h3>{data.title}</h3>
+            <p>{data.abstract}</p>
             <p class="more">
               More{" "}
               <span class="material-symbols-outlined"> arrow_outward </span>
             </p>
           </div>
           <div class="image">
-            <Image src={image.src} alt={image.alt} />
+            <Image src={data.image.src} alt={data.image.alt} />
           </div>
         </div>
       </a>

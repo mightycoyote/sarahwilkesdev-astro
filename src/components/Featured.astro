@@ -10,8 +10,8 @@ const featuredWork = await getCollection('work', ({data}) => {
 
 <div>
   <h2 id="work">Featured Work</h2>
-  {featuredWork.map((item, index) => (
-    <FeaturedItem index={index} title={item.data.title} abstract={item.data.abstract} image={item.data.image} />
+  {featuredWork.map((item, index, slug) => (
+    <FeaturedItem index={index} data={item.data} slug={item.slug}/>
   ))}
 </div>
 

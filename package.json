@@ -16,5 +16,8 @@
     "@fontsource-variable/montserrat": "^5.0.18",
     "@fontsource/calistoga": "^5.0.19",
     "astro": "^4.5.9"
+  },
+  "devDependencies": {
+    "astro-webmanifest": "^1.0.0"
   }
 }

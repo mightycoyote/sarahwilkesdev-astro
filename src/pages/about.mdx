@@ -1,12 +1,13 @@
 ---
-layout: "../layouts/BaseLayout.astro"
 pageTitle: "(More) About Me"
 ---
 
+import BaseLayout from '../layouts/BaseLayout.astro'
 import Details from "../components/Details.astro"
 import LessProfessional from "../components/LessProfessional.astro"
 
-# (More) About Me
+<BaseLayout pageTitle={frontmatter.pageTitle}>
+# {frontmatter.pageTitle}
 
 ## Professional bio
 
@@ -45,3 +46,5 @@ I live in Virginia, US, with a spouse, kid, and two cats, and I:
 - sometimes cook something
 - make web pages
 </LessProfessional>
+
+</BaseLayout>

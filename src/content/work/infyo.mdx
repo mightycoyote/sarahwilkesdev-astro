@@ -41,7 +41,7 @@ export default AsideFloat;
 
 Then there's CSS that does this:
 
-```CSS
+```css
 @media (max-width: 1023px) {
     .box-float {
         display: none;
@@ -63,7 +63,7 @@ My original design was the light version; then I did a bunch of reading about ho
 
 In Tailwind, specifying the light and dark versions of an element ends up looking like this:
 
-```CSS
+```css
 h2, h3, h4, h5 {
     @apply text-secondarytwo-light dark:text-secondarytwo pt-6 pb-2;
 }
@@ -97,7 +97,7 @@ I remember that I enjoyed learning and using Tailwind for this project... but I'
 
 An interesting CSS problem I had on INFyO was creating the optional "point" styles--in my design, these are paragraphs with extra indentation and marked with an arrow. Of course, the arrow is added with a pseudo-element when the paragraph includes the class name "point." But, it needed a lot of miscellaneous CSS styling to get it to display the way I wanted. I also decided the arrow should simply disappear on mobile, where there isn't much room for it.
 
-```CSS
+```css
 @media (min-width: 768px) {
     .point::before {
         content: "\2192";

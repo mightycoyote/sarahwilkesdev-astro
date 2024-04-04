@@ -17,7 +17,7 @@ image:
 
 It turned out that the GitHub API has its own library called Octokit. I ended up using [octokit/rest.js](https://octokit.github.io/rest.js/v18#usage), because I found a note somewhere suggesting this version would work best with Vite. However, Vite still didn't like it. I eventually solved the issue by replacing `node-fetch` with `isomorphic-fetch` as suggested in this [StackOverflow answer](https://stackoverflow.com/questions/73095592/octokit-js-not-working-with-vite-module-externalized-and-cannot-be-accessed-in/73095593#73095593) (and some others). After that, retrieving public info from GitHub went just fine:
 
-```JS
+```js
 import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({
@@ -46,7 +46,7 @@ async function fetchResponse(query) {
 
 [FrontendMentor.io](https://frontendmentor.io) happens to be based in the UK, so the user's "Joined" date is displayed in the app comps like so: `08 Jul 2020`. I wasn't sure how I was going to get the data returned by GitHub into that format, but I _was_ sure there would be a way to do it with built-in methods instead of a bunch of string manipulations and regexes. After spending some time looking it up, that way turned out to be the [Intl.DateTimeFormat() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat). It has to be made into a standard `Date` object first, then you give it the parameters you want:
 
-```JS
+```js
 export function displayResponse(response) {
     const date = new Date(response.created_at);
     outputBox.innerHTML = `
@@ -68,7 +68,7 @@ export function displayResponse(response) {
 
 Like my other app builds with both light and dark modes, this checks `localStorage` in case a user has been to the site before and saved a preference, then checks `prefers-color-scheme` if not.
 
-```JS
+```js
 const localPref = JSON.parse(localStorage.getItem('darkMode')); // boolean or null
 const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches; // boolean
 let darkMode = localPref ?? defaultDark; // boolean; if this evaluates to true, darkMode should be turned on

@@ -1,18 +1,84 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const workEntries = await getCollection('work');
-  return workEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const workEntries = await getCollection("work");
+  return workEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
+// the children/slot works a little differently when coming from Content folder
 const { Content } = await entry.render();
 ---
 
-<BaseLayout frontmatter={entry.data} >
+<style>
+  h3 {
+    padding: 0;
+    margin: 1.5rem 0 1rem;
+  }
+  .work-top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+
+    .span {
+      text-transform: uppercase;
+      color: var(--secondary-1-1);
+    }
+
+    @media (min-width: 35rem) {
+      flex-direction: row;
+      justify-content: space-between;
+
+      > * {
+        flex-basis: 100%;
+      }
+    }
+  }
+</style>
+
+<BaseLayout pageTitle={entry.data.pageTitle}>
+  <article>
+    <h1>{entry.data.pageTitle}</h1>
+    <div class="work-top-section">
+      <div class="left">
+        <p>
+          <span class="span">Abstract:</span>
+          <br />
+          {entry.data.abstract}
+        </p>
+        <p>
+          <span class="span">Built with:</span>
+          <br />
+          {entry.data.builtWith}
+        </p>
+        {
+          entry.data.challengeURL && (
+            <p>
+              <a class="more" href={entry.data.challengeURL}>
+                view challenge spec{" "}
+                <span class="material-symbols-outlined"> arrow_outward </span>
+              </a>
+            </p>
+          )
+        }
+        <p>
+          <a class="more" href={entry.data.liveURL}>
+            visit live site{" "}
+            <span class="material-symbols-outlined"> arrow_outward </span>
+          </a>
+        </p>
+      </div>
+      <div>
+        <Image src={entry.data.image.src} alt={entry.data.image.alt} />
+      </div>
+    </div>
     <Content />
+  </article>
 </BaseLayout>

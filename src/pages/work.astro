@@ -18,7 +18,7 @@ const pageTitle = "Work Archive";
     {
       allWork.map((item) => (
         <li>
-          <a href={`/work/${item.slug}/`}>{item.data.title}</a>
+          <a href={`/work/${item.slug}/`}>{item.data.pageTitle}</a>
           <br />
           {item.data.abstract}
         </li>

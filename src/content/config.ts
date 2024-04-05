@@ -11,7 +11,7 @@ const workCollection = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
-      title: z.string(),
+      pageTitle: z.string(),
       date: z.string(),
       liveURL: z.string().url(),
       challengeURL: z.string().url().optional(),

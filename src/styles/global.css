@@ -60,6 +60,12 @@ html {
     font-weight: 400;
   }
 
+  /* affects h3 header spacing in work and blog entries */
+  article h3 {
+    padding: 0;
+    margin: 2rem 0 1rem;
+  }
+
   a {
     color: var(--green-text);
     text-decoration: none;

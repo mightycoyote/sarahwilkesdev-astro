@@ -13,14 +13,38 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 // the children/slot works a little differently when coming from Content folder
 const { Content } = await post.render();
-
 ---
+
+<style>
+  span {
+    background-color: var(--primary-0);
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    & a {
+      color: var(--text-light);
+    }
+  }
+/* for some reason '& hover' doesn't work properly in the above selector */
+  span:hover {
+    background-color: var(--secondary-2-0);
+  }
+</style>
 
 <BaseLayout pageTitle={post.data.pageTitle}>
   <article>
     <h1>{post.data.pageTitle}</h1>
-    <p class="tags">Tagged with: {post.data.tags.map((tag) => <span><a href={`/tags/${tag}`}>{tag} </a></span>)} </ul> </p>
-
-    <Content />
+    <p class="tags">
+      Tagged with: {
+        post.data.tags.map((tag) => (
+          <span>
+            <a href={`/tags/${tag}`}>{tag} </a>
+          </span>
+        ))
+      }
+    </p>
   </article>
+
+  <Content />
 </BaseLayout>

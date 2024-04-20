@@ -4,6 +4,8 @@ import "@fontsource-variable/montserrat";
 import "@fontsource-variable/material-symbols-outlined";
 import "../styles/reset.css";
 import "../styles/global.css";
+import "../components/ThemeIcon.astro";
+import ThemeIcon from "../components/ThemeIcon.astro";
 const { pageTitle } = Astro.props;
 ---
 
@@ -37,6 +39,11 @@ const { pageTitle } = Astro.props;
           justify-content: space-between;
         }
       }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
       nav {
         ul {
           display: flex;
@@ -60,7 +67,7 @@ const { pageTitle } = Astro.props;
         @media (min-width: 30rem) {
           flex-direction: row;
         }
-        .right-div {
+        .footer-right {
           display: flex;
           flex-direction: row;
           gap: 0.5rem;
@@ -75,19 +82,22 @@ const { pageTitle } = Astro.props;
   <body>
     <header>
       <p><a href="/">Home</a></p>
-      <nav>
-        <ul>
-          <li>
-            <a href="/about/">About</a>
-          </li>
-          <li>
-            <a href="/#work">Work</a>
-          </li>
-          <li>
-            <a href="/#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav>
+          <ul>
+            <li>
+              <a href="/about/">About</a>
+            </li>
+            <li>
+              <a href="/#work">Work</a>
+            </li>
+            <li>
+              <a href="/#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <ThemeIcon />
+      </div>
     </header>
     <main>
       <slot />
@@ -98,7 +108,7 @@ const { pageTitle } = Astro.props;
           ©2023 <a href="/#contact">Sarah Wilkes</a>
         </p>
       </div>
-      <div class="right-div">
+      <div class="footer-right">
         <div class="tool-logo">
           <svg
             viewBox="0 0 85 107"

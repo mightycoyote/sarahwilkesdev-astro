@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import mastodon from "../images/logo-purple.svg";
 import gitHub from "../images/github-mark-white.svg";
+import gitHubLight from "../images/github-mark.svg";
 import frontendMentor from "../images/FrontendMentorLogo.png";
 import linkedIn from "../images/In-Blue-40@2x.png";
 ---
@@ -42,8 +43,8 @@ import linkedIn from "../images/In-Blue-40@2x.png";
     }
     input,
     textarea {
-      background-color: var(--text-light);
-      color: var(--bg-dark);
+      background-color: var(--text);
+      color: var(--bg);
     }
     button {
       font-weight: 600;
@@ -53,13 +54,13 @@ import linkedIn from "../images/In-Blue-40@2x.png";
       padding: 3px 5px;
       margin-top: 0.75rem;
       background-color: var(--secondary-2-0);
-      color: var(--bg-dark);
+      color: var(--bg);
       border: none;
       cursor: pointer;
       &:hover,
       &:focus {
         background-color: var(--teal-text);
-        color: var(--text-light);
+        color: var(--text);
       }
     }
   }
@@ -83,6 +84,11 @@ import linkedIn from "../images/In-Blue-40@2x.png";
       background: radial-gradient(#fff 75%, #0a0a0a);
     }
   }
+
+  svg {
+    max-height: 24px;
+  }
+
 </style>
 
 <div class="contact">
@@ -120,10 +126,7 @@ import linkedIn from "../images/In-Blue-40@2x.png";
           </a>
           <Image src={gitHub} alt="GitHub logo" />
           <a href="https://github.com/mightycoyote" id="github"> GitHub </a>
-          <Image 
-            src={frontendMentor}
-            alt="FrontendMentor logo"
-          />
+          <Image src={frontendMentor} alt="FrontendMentor logo" />
           <a
             href="https://www.frontendmentor.io/profile/mightycoyote"
             id="frontendmentor"

@@ -141,11 +141,17 @@ html.light {
     background-color: inherit;
     color: inherit;
   }
-
   form button {
     &:hover, &:focus {
       background-color: var(--blue-text);
       color: var(--bg);
     }
   }
+  #astro path {
+    fill: #17191E;
+  }
+  #github path {
+    fill: #24292f;
+  }
+
 }

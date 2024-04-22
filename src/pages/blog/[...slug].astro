@@ -16,7 +16,7 @@ const { Content } = await post.render();
 ---
 
 <style>
-  span {
+  .tags span {
     background-color: var(--primary-0);
     margin-left: 5px;
     padding-left: 5px;
@@ -26,8 +26,8 @@ const { Content } = await post.render();
       color: var(--text-light);
     }
   }
-/* for some reason '& hover' doesn't work properly in the above selector */
-  span:hover {
+  /* for some reason '& hover' doesn't work properly in the above selector */
+  .tags span:hover {
     background-color: var(--secondary-2-0);
   }
 </style>
@@ -44,7 +44,6 @@ const { Content } = await post.render();
         ))
       }
     </p>
+    <Content />
   </article>
-
-  <Content />
 </BaseLayout>

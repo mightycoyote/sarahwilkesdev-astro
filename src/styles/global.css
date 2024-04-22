@@ -131,15 +131,21 @@ li::marker {
 html.light {
   --bg: #ececec;
   --text: #0a0a0a;
-  --green-text: var(--secondary-2-3);
+  --green-text: var(--secondary-2-4);
   --blue-text: var(--secondary-1-0);
   --teal-text: var(--primary-3);
   --card-bg: rgba(112, 165, 177, 0.3);
 
+  .hero .spaced-header {
+    color: var(--secondary-1-2);
+  }
   form input,
   form textarea {
-    background-color: inherit;
+    background-color: white;
     color: inherit;
+  }
+  form label {
+    color: var(--secondary-1-2);
   }
   form button {
     &:hover, &:focus {
@@ -152,6 +158,12 @@ html.light {
   }
   #github path {
     fill: #24292f;
+  }
+  .work-top-section .span {
+    color: var(--secondary-1-2);
+  }
+  .tags span {
+    color: var(--bg);
   }
 
 }

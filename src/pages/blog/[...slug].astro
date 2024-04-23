@@ -16,6 +16,9 @@ const { Content } = await post.render();
 ---
 
 <style>
+  h1 {
+    margin-bottom: 1rem;
+  }
   .tags span {
     background-color: var(--primary-0);
     margin-left: 5px;
@@ -24,6 +27,7 @@ const { Content } = await post.render();
     border-radius: 3px;
     & a {
       color: var(--text-light);
+      text-decoration: none;
     }
   }
   /* for some reason '& hover' doesn't work properly in the above selector */
@@ -36,7 +40,7 @@ const { Content } = await post.render();
   <article>
     <h1>{post.data.pageTitle}</h1>
     <p class="tags">
-      Tagged with: {
+      Date: {post.data.date} | Tagged with: {
         post.data.tags.map((tag) => (
           <span>
             <a href={`/tags/${tag}`}>{tag} </a>

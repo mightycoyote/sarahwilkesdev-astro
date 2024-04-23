@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import mastodon from "../images/logo-purple.svg";
-import gitHub from "../images/github-mark-white.svg";
-import gitHubLight from "../images/github-mark.svg";
 import frontendMentor from "../images/FrontendMentorLogo.png";
 import linkedIn from "../images/In-Blue-40@2x.png";
 ---
@@ -10,6 +8,9 @@ import linkedIn from "../images/In-Blue-40@2x.png";
 <style>
   .contact {
     padding: clamp(1rem, 3vw, 1.5rem) 0;
+    a {
+          text-decoration: none;
+        }
   }
 
   .flex {

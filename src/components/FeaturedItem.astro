@@ -4,6 +4,9 @@ const { index, data, slug } = Astro.props;
 ---
 
 <style>
+  a {
+    text-decoration: none;
+  }
   .card {
     display: flex;
     flex-direction: column;
@@ -12,7 +15,6 @@ const { index, data, slug } = Astro.props;
     margin-bottom: 2rem;
     background-color: var(--card-bg);
     border-radius: 3px;
-
     p {
       color: var(--text);
     }

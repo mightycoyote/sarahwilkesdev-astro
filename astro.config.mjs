@@ -8,7 +8,8 @@ export default defineConfig({
     mdx(),
     webmanifest({
       name: 'Sarah Wilkes Dev',
-      description: 'Frontend web developer portfolio',
+      short_name: 'SWD',
+      description: 'Frontend web developer portfolio and random blog',
       icon: 'src/images/favicon.svg',
       background_color: '#0a0a0a',
       theme_color: 'rgb(82, 99, 159)',

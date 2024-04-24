@@ -9,8 +9,6 @@ export default defineConfig({
     webmanifest({
       name: 'Sarah Wilkes Dev',
       description: 'Frontend web developer portfolio',
-      siteUrl: 'https://www.sarahwilkesdev.com',
-      image: '/Sarah_octocat_social.jpg',
       icon: 'src/images/favicon.svg',
       background_color: '#0a0a0a',
       theme_color: 'rgb(82, 99, 159)',

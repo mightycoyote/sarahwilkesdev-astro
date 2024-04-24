@@ -17,6 +17,13 @@ const { pageTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link href="/prism-tomorrow.min.css" rel="stylesheet" />
     <title>{pageTitle} | Sarah Wilkes Dev</title>
+    <meta name="description" content="Frontend web developer portfolio" />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://sarahwilkesdev.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sarah Wilkes Dev" />
+    <meta property="og:description" content="Frontend web developer portfolio" />
+    <meta property="og:image" content="/Sarah_octocat_web.png" />
     <style>
       body {
         margin: 0 auto;
@@ -72,7 +79,7 @@ const { pageTitle } = Astro.props;
         a {
           text-decoration: none;
         }
-        
+
         @media (min-width: 30rem) {
           flex-direction: row;
         }

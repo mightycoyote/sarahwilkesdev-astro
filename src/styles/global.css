@@ -139,6 +139,10 @@ html.light {
   --teal-text: var(--primary-3);
   --card-bg: rgba(112, 165, 177, 0.3);
 
+  details {
+    color: var(--primary-4);
+  }
+
   .hero .spaced-header {
     color: var(--secondary-1-2);
   }

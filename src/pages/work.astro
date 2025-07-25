@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const allWork = await getCollection("work");
+const allWork = (await getCollection("work")).sort(
+  (a, b) => Date.parse(b.data.date).valueOf() - Date.parse(a.data.date).valueOf(),
+);
 const pageTitle = "Work Archive";
 ---
 
@@ -18,7 +20,7 @@ const pageTitle = "Work Archive";
     {
       allWork.map((item) => (
         <li>
-          <a href={`/work/${item.slug}/`}>{item.data.pageTitle}</a>
+          <a href={`/work/${item.id}/`}>{item.data.pageTitle}</a>
           <br />
           {item.data.abstract}
         </li>

@@ -1,5 +1,6 @@
 import type { SchemaContext } from "astro:content";
 import { z, defineCollection } from "astro:content";
+import { glob } from 'astro/loaders';
 
 export const imageSchema = ({ image }: SchemaContext) =>
   z.object({
@@ -8,7 +9,7 @@ export const imageSchema = ({ image }: SchemaContext) =>
   });
 
 const workCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/work" }),
   schema: ({ image }) =>
     z.object({
       pageTitle: z.string(),
@@ -23,7 +24,7 @@ const workCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
   schema: z.object({
     pageTitle: z.string(),
     date: z.string(),

@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const allBlog = await getCollection("blog");
+const allBlog = (await getCollection("blog")).sort(
+  (a, b) => Date.parse(b.data.date).valueOf() - Date.parse(a.data.date).valueOf(),
+);
 const pageTitle = "Blog";
 ---
 
@@ -18,7 +20,7 @@ const pageTitle = "Blog";
     {
       allBlog.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}/`}>{post.data.pageTitle}</a> | {post.data.date}
+          <a href={`/blog/${post.id}/`}>{post.data.pageTitle}</a> | {post.data.date}
           <br />
           {post.data.abstract !== null ? post.data.abstract : ""}
         </li>

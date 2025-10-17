@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.8",
     "@astrojs/mdx": "^4.3.7",
+    "@astrojs/netlify": "^6.5.13",
     "@astrojs/prism": "^3.3.0",
     "@fontsource-variable/material-symbols-outlined": "^5.0.27",
     "@fontsource-variable/montserrat": "^5.0.18",

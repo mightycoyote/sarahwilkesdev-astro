@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config';
 import mdx from "@astrojs/mdx";
 import webmanifest from 'astro-webmanifest';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -17,7 +19,10 @@ export default defineConfig({
       display: 'standalone',
     }),
   ],
+
   markdown: {
     syntaxHighlight: 'prism',
-  }
+  },
+
+  adapter: netlify()
 });
